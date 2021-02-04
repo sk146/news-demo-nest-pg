@@ -9,13 +9,13 @@ export class NewsRepository {
   ) {}
 
   public async add(news: News) {
-    const sql = `INSERT INTO public.news (id, title, description, date) VALUES ($1, $2, $3, $4) returning *`;
+    const sql = `INSERT INTO public.news (id, title, description, tags, date) VALUES ($1, $2, $3, $4, $5) returning *`;
     const res = await this.connect.query(sql, this.mapper.toArray(news));
     return this.mapper.toInstance(res.rows[0]);
   }
 
   public async edit(news: News) {
-    const sql = `UPDATE news SET title = $2, description = $3, date = $4 WHERE id = $1 returning *`;
+    const sql = `UPDATE news SET title = $2, description = $3, tags = $4, date = $5 WHERE id = $1 returning *`;
     const res = await this.connect.query(sql, this.mapper.toArray(news));
     return this.mapper.toInstance(res.rows[0]);
   }

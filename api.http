@@ -1,0 +1,79 @@
+GET LIST
+
+GET localhost:3000/news
+RETURN STATUS 200
+
+
+GET ITEM NEWS 
+GET localhost:3000/news/659d75bd-dc33-4b59-9431-86ee858a7ea7
+RETURN STATUS 200
+{
+  "id": {
+    "id": "659d75bd-dc33-4b59-9431-86ee858a7ea7"
+  },
+  "title": "News 1",
+  "description": "Test description",
+  "date": "2021-02-04T09:21:21.568Z"
+}
+
+ADD ITEM NEWS
+POST localhost:3000/news
+REQUEST
+{
+	"title": "API NEWS", 
+	"description": "test api news",
+	"tags": [
+		"api", "test"
+	]
+}
+
+RETURN STATUS 200
+{
+  "id": {
+    "id": "66454959-9c91-487e-85df-74e296e57067"
+  },
+  "title": "API NEWS",
+  "description": "test api news",
+  "tags": [
+    {
+      "name": "api"
+    },
+    {
+      "name": "test"
+    }
+  ],
+  "date": "2021-02-04T13:04:41.412Z"
+}
+
+EDIT ITEM NEWS 
+PUT localhost:3000/news
+REQUEST
+{
+	"id": "09f58713-a5e4-4737-9cb9-be74fd4f7a82",
+	"title": "Edit API NEWS 2", 
+	"description": "test api news",
+		"tags": [
+		"api", "test"
+	]
+}
+RETURN STATUS 200
+{
+  "id": {
+    "id": "09f58713-a5e4-4737-9cb9-be74fd4f7a82"
+  },
+  "title": "Edit API NEWS 2",
+  "description": "test api news",
+  "tags": [
+    {
+      "name": "api"
+    },
+    {
+      "name": "test"
+    }
+  ],
+  "date": "2021-02-04T13:03:56.351Z"
+}
+
+DELETE ITEM NEWS 
+DELETE localhost:3000/news/:id
+RETURN STATUS 200
